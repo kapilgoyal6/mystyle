@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OnlineROR</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+
+<body>
+
+<style type="text/css">
+body {
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px; line-height:normal;
+	color:#5a5a5a;
+	background: url(../../images/home.jpg) no-repeat;
+	background-size:100% 300%;
+	z-index: 20;
+  /*position: relative;*/
+}
+
+.lab{
+	color: black;
+}
+
+
+.form{
+	/*padding-right: -10%;*/
+	/*bottom: -10px;*/
+    position: relative;
+    padding-right: 20px;
+    /*width: 100%;*/
+    z-index: 10;
+    text-align: right;
+}
+
+footer{
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
+
+.footer {
+    margin: auto;
+    width: 400px;
+    text-align:center;
+    color:red;
+}
+
+.flash{
+  color: black;
+  font-size: 20px;
+}
+
+
+</style>
+
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash" %>
+  <% end %>
+
+<div class="form">
+
+<h2 style="color:black; padding-right:100px">Sign In</h2>
+
+<%= form_tag sessions_path do %>
+  <p class="lab">
+    <%# label_tag :email %>
+    <%= text_field_tag :email , nil, :placeholder => "Email" %>
+  </p>
+  <p class="lab">
+    <%# label_tag :password %>
+    <%= password_field_tag :password, nil, :placeholder => "Password" %>
+  </p>
+  <p class="button"><%= submit_tag "Log in" %></p>
+<% end %>
+
+<%= link_to 'Register Here', '/register' %>
+
+</div>
+
+
+
+
+<footer>
+    <div class="footer">
+    Designed and Developed by Kapil Goyal
+    </div>
+<footer>
+
+<style type="text/css">
+	
+
+
+</style>
+
+</body>
+</html>

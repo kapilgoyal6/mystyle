@@ -1,0 +1,21 @@
+<div class="formHdBox">
+    <div class="tableHd">Songs : English&nbsp;&nbsp;&nbsp;</div>
+    <div class="AddCon"><%= link_to (image_tag('addnew.png') + 'Upload Song'), new_song_path %>
+    </div>
+</div>
+
+<div class="content">
+        <% @songs.each do |song| %>
+            <audio controls style="margin-bottom:-1%">
+              <source src= <%= song.file %> type="audio/mp3">
+              Your browser does not support this audio format.
+            </audio>
+            <%= song.file.file.original_filename %>
+            <%= link_to image_tag("delete.png", :title => "Delete"), song, method: :delete, data: { confirm: 'Are you sure to delete this song?' } %>
+            <% if song.favourite == false %> 
+              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'songs', :action => 'set_fav', :id => song.id %>
+            <% else %>
+              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'songs', :action => 'unset_fav', :id => song.id %>
+            <% end %><br><br>
+        <% end %>
+</div>

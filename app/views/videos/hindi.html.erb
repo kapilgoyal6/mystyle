@@ -1,0 +1,31 @@
+<div class="formHdBox">
+    <div class="tableHd">Videos : Hindi&nbsp;&nbsp;&nbsp;</div>
+    <div class="AddCon"><%= link_to (image_tag('addnew.png') + 'Add Video'), new_video_path %>
+    </div>
+</div>
+
+<div class="content">
+    <% i = 1 %>
+    <div class="row">
+        <% @videos.each do |video| %>
+        <% i = i + 1 %>
+        <div class="four columns">
+            <iframe width="250" height="150" src= <%= "#{"https://www.youtube.com/embed/"}" + video.url %> >
+              <html lang="en" dir="ltr">
+            </iframe>
+            <%= link_to image_tag("delete.png", :title => "Delete"), video, method: :delete, data: { confirm: 'Are you sure to delete this video?' } %>
+            <% if video.favourite == false %> 
+              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'videos', :action => 'set_fav', :id => video.id %>
+            <% else %>
+              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'videos', :action => 'unset_fav', :id => video.id %>
+            <% end %>
+            <%= link_to image_tag("goto.jpg", :title => "Go to URL"), "https://www.youtube.com/embed/" + video.url, :target => "_blank" %>
+         </div>
+         <% if i%3 == 1 %>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><bn>
+         <% end %>
+        <% end %>
+    </div>
+</div>
+
+<%= paginate @videos %>

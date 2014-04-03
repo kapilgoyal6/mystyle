@@ -1,0 +1,42 @@
+<%= form_for :profile do |f| %>
+  
+  <div class="field">
+    <%= f.label :first_name, 'First Name' %>
+    <%= f.text_field :first_name %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :last_name, 'Last Name' %>
+    <%= f.text_field :last_name %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :gender %>
+    <%= f.radio_button :gender, 'Male' %>Male
+    <%= f.radio_button :gender, 'Female' %>Female
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :dob, 'DOB' %>
+    <%= f.date_select :dob, {:start_year => Time.now.year, :end_year => Time.now.year-80} %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :about, 'About Me' %>
+    <%= f.text_area :about %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :profile_pic, 'Profile Picture' %>
+    <%= f.file_field :profile_pic %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

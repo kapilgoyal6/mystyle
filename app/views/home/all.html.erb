@@ -1,0 +1,25 @@
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?sensor=true">
+</script>
+
+
+<script type="text/javascript">
+
+function pos(){
+	navigator.geolocation.getCurrentPosition(showpos)
+}
+
+function showpos(position){
+	var lat=position.coords.latitude;
+	var lon=position.coords.longitude;
+	var mapOptions = {
+		center: new google.maps.LatLng(lat,lon),
+		zoom: 8,
+	};
+	var map = new google.maps.Map(document.getElementById("map-canvas"),
+	    mapOptions);
+}
+google.maps.event.addDomListener(window, 'load', pos);
+</script>
+
+<div id="map-canvas"/>

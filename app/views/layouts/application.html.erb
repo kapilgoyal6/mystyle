@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OnlineROR</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<% if current_user %>
+<div class="mainCon">
+	<div class="midLeft">
+        <div id="sidebar">
+        	<div id="sidebar-wrapper">
+	            <ul id="main-nav">
+	            	<li>
+	            		<% if @profile.profile_pic.present? %>
+							<%= image_tag(@profile.profile_pic, :class => 'pic')  %>
+						<% else %>
+							<%= image_tag('default.jpg', :width => 150, :height => 150)  %>
+						<% end %>
+	             	</li>
+
+	            	<li><a href="" class="nav-top-item " style="">Home</a>
+						<ul style="display: none;">
+		                    <li><a href="/home">Home Page</a></li>
+		             	</ul>
+	             	</li>
+	             	<li><a href="" class="nav-top-item " style="padding-right: 15px;">Profile</a>
+	                	<ul style="display: none;">
+	                        <li><%= link_to 'Edit Profile', '/profile/edit' %></li>
+	                        <li><%= link_to 'View Profile', '/profile' %></li>
+	                    </ul>
+	                </li>
+				 	<li><a href="" class="nav-top-item " style="padding-right: 15px;">Images</a>
+	                	<ul style="display: none;">
+	                		<li><%= link_to 'All', '/pictures' %></li>
+	                        <li><%= link_to 'Personal', '/pictures/personal' %></li>
+	                        <li><%= link_to 'Family', '/pictures/family' %></li>
+	                        <li><%= link_to 'Friends', '/pictures/friends' %></li>
+	                    </ul>
+	                </li>
+	                <li><a href="" class="nav-top-item " style="padding-right: 15px;">Music</a>
+						<ul style="display: none;">
+							<li><%= link_to 'All', '/songs' %></li>
+	                        <li><%= link_to 'Hindi', '/songs/hindi' %></li>
+							<li><%= link_to 'English', '/songs/english' %></li>
+							<li><%= link_to 'Punjabi', '/songs/punjabi' %></li>
+		                </ul>
+	                </li>
+					<li><a href="" class="nav-top-item " style="padding-right: 15px;">Videos</a>
+						<ul style="display: none;">
+							<li><%= link_to 'All', '/videos' %></li>
+							<li><%= link_to 'Hindi', '/videos/hindi' %></li>
+							<li><%= link_to 'English', '/videos/english' %></li>
+							<li><%= link_to 'Punjabi', '/videos/punjabi' %></li>
+						</ul>
+					</li>
+	            </ul>
+            </div>
+        </div>
+    </div>	
+    <div class="midRight">
+    	<div class="topPart" data-no-turbolink><strong>Welcome!</strong> <%= current_user.email %> | 
+    		<%= link_to "Log out", log_out_path %> | <%= link_to "Get your location", '/location', :class => 'location' %>
+    	</div>
+    	<% flash.each do |name, msg| %>
+  			<%= content_tag :div, msg, :id => "flash_#{name}" %>
+		<% end %>
+
+		<div class="rightMid">
+		<%= yield %>
+		</div>
+
+		<footer>
+		    <div class="footer">
+		    Designed and Developed by Kapil Goyal
+		    </div>
+		</footer>
+	
+    </div>   
+
+</div>
+
+<% else %>
+    <%= link_to "Sign In", login_path %>
+	<% flash.each do |name, msg| %>
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+
+<% end %>
+
+
+<%= yield :sidebar %>
+
+
+
+
+</body>
+</html>

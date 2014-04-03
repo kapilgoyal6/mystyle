@@ -1,0 +1,29 @@
+<div class="formHdBox">
+    <div class="tableHd">Pictures : Family&nbsp;&nbsp;&nbsp;</div>
+    <div class="AddCon"><%= link_to (image_tag('addnew.png') + 'Upload Image'), new_picture_path %>
+    </div>
+</div>
+
+<div class="content">
+    <% i = 1 %>
+    <div class="row">
+        <% @pictures.each do |picture| %>
+        <% i = i + 1 %>
+        <div class="four columns">
+            <%= image_tag(picture.image) %><br>
+            <%= link_to image_tag("delete.png", :title => "Delete"), picture, method: :delete, data: { confirm: 'Are you sure to delete this image?' } %>
+            <% if picture.favourite == false %> 
+              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'pictures', :action => 'set_fav', :id => picture.id %>
+            <% else %>
+              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'pictures', :action => 'unset_fav', :id => picture.id %>
+            <% end %>
+         </div>
+         <% if i%3 == 1 %>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><bn>
+         <% end %>
+        <% end %>
+    </div>
+</div>
+
+
+<%= paginate @pictures %>

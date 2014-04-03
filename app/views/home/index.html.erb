@@ -1,0 +1,57 @@
+<div class="homeHdBox">
+	<div class="tableHd">Videos : Favourite&nbsp;&nbsp;&nbsp;</div>
+	<div class="AddCon"><img src="images/addnew.png" border="0"><%= link_to 'Add Video', new_video_path %>
+    </div>
+</div>
+
+<div class="homeContent">
+    <% i = 1 %>
+    <div class="row">
+        <% @videos.each do |video| %>
+        <% i = i + 1 %>
+        <div class="three columns">
+                <iframe width="250" height="150" src= <%= "#{"https://www.youtube.com/embed/"}" + video.url %> >
+                  <html lang="en" dir="ltr">
+                </iframe>
+            <%= link_to image_tag("delete.png", :title => "Delete"), video, method: :delete, data: { confirm: 'Are you sure to delete this video?' } %>
+            <% if video.favourite == false %> 
+              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'videos', :action => 'set_fav', :id => video.id %>
+            <% else %>
+              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'videos', :action => 'unset_fav', :id => video.id %>
+            <% end %>
+            <%= link_to image_tag("goto.jpg", :title => "Go to URL"), "https://www.youtube.com/embed/" + video.url, :target => "_blank" %>
+         </div>
+         <% if i%3 == 1 %>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><bn>
+         <% end %>
+        <% end %>
+    </div>
+</div>
+
+
+<div class="homeHdBox" style="margin-top:0;">
+  <div class="tableHd">Pictures : Favourite&nbsp;&nbsp;&nbsp;</div>
+  <div class="AddCon"><img src="images/addnew.png" border="0"><%= link_to 'Upload Picture', new_picture_path %>
+    </div>
+</div>
+
+<div class="homeContent">
+    <% i = 1 %>
+    <div class="row">
+        <% @pictures.each do |picture| %>
+        <% i = i + 1 %>
+        <div class="two columns">
+            <%= image_tag(picture.image, :class => 'picture') %><br>
+            <%= link_to image_tag("delete.png", :title => "Delete"), picture, method: :delete, data: { confirm: 'Are you sure to delete this image?' } %>
+            <% if picture.favourite == false %> 
+              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'pictures', :action => 'set_fav', :id => picture.id %>
+            <% else %>
+              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'pictures', :action => 'unset_fav', :id => picture.id %>
+            <% end %>
+         </div>
+         <% if i%3 == 1 %>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><bn>
+         <% end %>
+        <% end %>
+    </div>
+</div>

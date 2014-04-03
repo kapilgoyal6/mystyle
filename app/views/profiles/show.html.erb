@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<div class="formHdBox">
+  <div class="tableHd">View Profile&nbsp;&nbsp;&nbsp;</div>
+  <div class="AddCon"><%= link_to 'Edit Profile', '/profile/edit' %></div>
+</div>
+<div class="content">
+  <div class="left">
+
+    <div class="fldline">
+      <div class="label"><b>First Name</b></div>
+      <div class="fld"><%= @profile.first_name %></div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="fldline">
+      <div class="label"><b>Last Name</b></div>
+      <div class="fld"><%= @profile.last_name %></div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="fldline">
+      <div class="label"><b>Gender</b></div>
+      <div class="fld"><%= @profile.gender %></div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="fldline">
+      <div class="label"><b>DOB</b></div>
+      <div class="fld"><%= @profile.dob %></div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="fldline">
+      <div class="label"><b>Address</b></div>
+      <div class="fld"><%= @profile.address %></div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="fldline">
+      <div class="label"><b>About Me</b></div>
+      <div class="fld"><%= @profile.about %></div>
+      <div class="clr"></div>
+    </div>
+                      
+  </div>
+
+  <div class="clr"></div>
+</div>
+
+

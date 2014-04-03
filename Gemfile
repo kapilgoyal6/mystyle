@@ -1,9 +1,12 @@
 source 'http://rubygems.org'
 
+
+
 gem 'geocoder'
 
 gem 'bootstrap_form'
 gem "twitter-bootstrap-rails"
+gem 'therubyracer'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'carrierwave'
 gem 'kaminari'

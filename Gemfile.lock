@@ -143,7 +143,6 @@ DEPENDENCIES
   bootstrap_form
   carrierwave
   coffee-rails (~> 4.0.0)
-  execjs
   geocoder
   jbuilder (~> 2.0)
   jquery-rails

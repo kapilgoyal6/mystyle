@@ -24,7 +24,7 @@
         <% end %>
     </div>
 </div>
-
+<br>
 
 <div class="homeHdBox" style="margin-top:0;">
   <div class="tableHd">Pictures : Favourite&nbsp;&nbsp;&nbsp;</div>
@@ -50,7 +50,7 @@
         <% end %>
     </div>
 </div>
-
+<br>
 
 <div class="homeHdBox" style="margin-top:0;">
   <div class="tableHd">Music : Favourite&nbsp;&nbsp;&nbsp;</div>
@@ -59,19 +59,18 @@
 </div>
 
 <div class="homeContent">
-    <% i = 1 %>
-        <% @songs.each do |song| %>
-        <audio controls style="margin-bottom:-1%">
-              <source src= <%= song.file %> type="audio/mp3">
-              Your browser does not support this audio format.
-            </audio>
-            <%= song.file.file.original_filename %> | 
-            <%= number_with_precision(song.file.file.size / 1024.0 /1024.0, :precision => 2) %>MB | 
-            <%= link_to image_tag("delete.png", :title => "Delete"), song, method: :delete, data: { confirm: 'Are you sure to delete this song?' } %>
-            <% if song.favourite == false %> 
-              <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'songs', :action => 'set_fav', :id => song.id %>
-            <% else %>
-              <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'songs', :action => 'unset_fav', :id => song.id %>
-            <% end %><br><br>
-        <% end %>
+    <% @songs.each do |song| %>
+    <audio controls style="margin-bottom:-1%">
+      <source src= <%= song.file %> type="audio/mp3">
+      Your browser does not support this audio format.
+    </audio>
+    <%= song.file.file.original_filename %> | 
+      <%= number_with_precision(song.file.file.size / 1024.0 /1024.0, :precision => 2) %>MB | 
+      <%= link_to image_tag("delete.png", :title => "Delete"), song, method: :delete, data: { confirm: 'Are you sure to delete this song?' } %>
+      <% if song.favourite == false %> 
+        <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'songs', :action => 'set_fav', :id => song.id %>
+      <% else %>
+        <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'songs', :action => 'unset_fav', :id => song.id %>
+      <% end %><br><br>
+    <% end %>
 </div>

@@ -6,11 +6,12 @@
 
 <div class="content">
         <% @songs.each do |song| %>
-            <audio controls style="margin-bottom:-1%">
+        <audio controls style="margin-bottom:-1%">
               <source src= <%= song.file %> type="audio/mp3">
               Your browser does not support this audio format.
             </audio>
-            <%= song.file.file.original_filename %>
+            <%= song.file.file.original_filename %> | 
+            <%= number_with_precision(song.file.file.size / 1024.0 /1024.0, :precision => 2) %>MB | 
             <%= link_to image_tag("delete.png", :title => "Delete"), song, method: :delete, data: { confirm: 'Are you sure to delete this song?' } %>
             <% if song.favourite == false %> 
               <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'songs', :action => 'set_fav', :id => song.id %>

@@ -9,8 +9,8 @@
     <div class="row">
         <% @pictures.each do |picture| %>
         <% i = i + 1 %>
-        <div class="four columns">
-            <%= image_tag(picture.image) %><br>
+        <div class="ywo columns">
+            <%= image_tag(picture.image, :class => 'picture') %><br>
             <%= link_to image_tag("delete.png", :title => "Delete"), picture, method: :delete, data: { confirm: 'Are you sure to delete this image?' } %>
             <% if picture.favourite == false %> 
               <%= link_to image_tag("unfav.jpg", :title => "Set as a favourite"), :controller => 'pictures', :action => 'set_fav', :id => picture.id %>
@@ -18,7 +18,7 @@
               <%= link_to image_tag("fav.jpg", :title => "Unset as a favourite"), :controller => 'pictures', :action => 'unset_fav', :id => picture.id %>
             <% end %>
          </div>
-         <% if i%3 == 1 %>
+         <% if i%6 == 1 %>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><bn>
          <% end %>
         <% end %>

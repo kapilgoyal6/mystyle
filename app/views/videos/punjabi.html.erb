@@ -10,7 +10,7 @@
         <% @videos.each do |video| %>
         <% i = i + 1 %>
         <div class="four columns">
-            <iframe width="250" height="150" src= <%= "#{"https://www.youtube.com/embed/"}" + video.url %> >
+            <iframe width="230" height="150" src= <%= "#{"https://www.youtube.com/embed/"}" + video.url %> >
               <html lang="en" dir="ltr">
             </iframe>
             <%= link_to image_tag("delete.png", :title => "Delete"), video, method: :delete, data: { confirm: 'Are you sure to delete this video?' } %>

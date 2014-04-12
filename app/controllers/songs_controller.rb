@@ -17,7 +17,7 @@ class SongsController < ApplicationController
   end
 
   def index
-    @songs = Song.all
+    @songs = Song.where(:user_id => current_user).order('updated_at DESC').page(params[:page]).per(9)
     @profile = Profile.find_by_user_id(current_user)
   end
 

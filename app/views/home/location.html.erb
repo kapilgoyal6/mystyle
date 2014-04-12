@@ -34,40 +34,21 @@ google.maps.event.addDomListener(window, 'load', pos);
 
 
 
-
-
-
-
-
-
-
-
 <h3>GOOGLE MAPS</h3>
 
 
 <!-- LATITUDE AND LONGITUDE ON MAP -->
 
-<p id="demo">Click the button to get your position:</p>
-<button onclick="getLatLong()">Lat Long</button>
-<button onclick="getMap()">Map</button>
-<div id="mapholder"></div>
+<p id="demo"></p>
 <script>
 // var x=document.getElementById("demo");
 
 // check();
 
 
-function getMap()
-  {
-  if (navigator.geolocation)
-    {
-      navigator.geolocation.getCurrentPosition(showMap,showError);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
 
 
-function getLatLong()
+function onload()
   {
   if (navigator.geolocation)
     {
@@ -76,103 +57,18 @@ function getLatLong()
   else{x.innerHTML="Geolocation is not supported by this browser.";}
   }
 
-function showMap(position)
-  {
-  var latlon=position.coords.latitude+","+position.coords.longitude;
 
-  var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
-  +latlon+"&zoom=14&size=400x300&sensor=false";
-  document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
-  }
 
   function showLatLong(position)
   {
   x.innerHTML="Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude;
-  }
-
-function showError(error)
-  {
-  switch(error.code) 
-    {
-    case error.PERMISSION_DENIED:
-      x.innerHTML="User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML="Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      x.innerHTML="The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      x.innerHTML="An unknown error occurred."
-      break;
-    }
-  }
-</script>
-
-
-<script>
-var x=document.getElementById("demo");
-function getLocation()
-  {
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
-function showPosition(position)
-  {
-  x.innerHTML="Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;  
-  }
-</script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-  var country,state,city,pinCode;
-  function createCORSRequest(method, url) {
-    var xhr = new XMLHttpRequest();
-
-    if ("withCredentials" in xhr) {
-      // XHR for Chrome/Firefox/Opera/Safari.
-      xhr.open(method, url, true);
-
-    } else if (typeof XDomainRequest != "undefined") {
-      // XDomainRequest for IE.
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-
-    } else {
-      // CORS not supported.
-      xhr = null;
-    }
-    return xhr;
-  }
-
-  function getLocationDetails()
-  {
-  hide();
-  latitude1=document.getElementById("latitude").value;
-  longitude1=document.getElementById("longitude").value;
+  // hide();
+  latitude1=position.coords.latitude;
+  longitude1=position.coords.longitude;
 
   var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+
           latitude1+","+longitude1+"&sensor=true";
@@ -216,25 +112,90 @@ function showPosition(position)
                  
              };
           xhr.send();
-          
+
+
   }
 
-  function hide()
+function showError(error)
   {
-  document.getElementById("messageBox").style.visibility="hidden";
+  switch(error.code) 
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="An unknown error occurred."
+      break;
+    }
+  }
+</script>
+
+
+<script>
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
   }
 </script>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var country,state,city,pinCode;
+  function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+
+    if ("withCredentials" in xhr) {
+      // XHR for Chrome/Firefox/Opera/Safari.
+      xhr.open(method, url, true);
+
+    } else if (typeof XDomainRequest != "undefined") {
+      // XDomainRequest for IE.
+      xhr = new XDomainRequest();
+      xhr.open(method, url);
+
+    } else {
+      // CORS not supported.
+      xhr = null;
+    }
+    return xhr;
+  }
+
+  
+</script>
+
+
+
 <!-- HTML Code  -->
-<body onload="hide()">
+<body onload="onload()">
   <div>
-    Latitude:<input type="text" id="latitude"><br><br>
-    Longitude:<input type="text" id="longitude"><br><br>
-    <input type="button" value="Get Location" 
-    onclick="getLocationDetails()"></button>
-    <br><br>
     <label id="val"></label>
   </div>
   <div id="messageBox" style="position:fixed; top:30%; left:30%; width:200px; height:100px; border-radius:15px; text-align:center; background-color:skyblue">

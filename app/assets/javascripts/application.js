@@ -27,6 +27,7 @@ $(document).ready(function(){
 
 	$(document).on('click', "#main-nav li .nav-top-item", // When a top menu item is clicked...
 		function () {
+			alert("ngfkjr");
 			$(this).parent().siblings().find("ul").slideUp("normal"); // Slide up all sub menus except the one clicked
 			$(this).next().slideToggle("normal"); // Slide down the clicked sub menu
 			return false;
@@ -105,7 +106,4 @@ $(document).ready(function(){
 
     // Initialise Facebox Modal window:
 	$('a[rel*=modal]').facebox(); // Applies modal window to any link with attribute rel="modal"
-
-    // Initialise jQuery WYSIWYG:
-	$(".wysiwyg").wysiwyg(); // Applies WYSIWYG editor to any textarea with the class "wysiwyg"
 });

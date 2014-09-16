@@ -4,8 +4,10 @@
   <title>Freda - The Personal Collection</title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "/javascripts/jquery-1.10.2.min.js"  %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "/javascripts/sidebar.js"  %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
